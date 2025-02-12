@@ -28,7 +28,20 @@ winget install --id=Notepad++.Notepad++ -e
 winget install DevToys-app.DevToys
 
 # Set up my start menu the way I want it
-Import-StartLayout -Path ".\.StartMenuLayout.json" -MountPath $env:SystemDrive\
+# Define paths
+$layoutPath = "$env:LOCALAPPDATA\StartMenuLayout.json"
+$gistUrl = "https://gist.githubusercontent.com/brucevanhorn2/8e4bf6ea54e89ad277bad83106cff57a/raw/65fe7078deb6dc99e7d6fa6f6e128c716a675c58/StartMenuLayout.json"
+
+# Download the Start Menu layout from Gist
+Write-Host "Downloading Start Menu layout..."
+Invoke-WebRequest -Uri $gistUrl -OutFile $layoutPath -UseBasicParsing
+
+# Apply the Start Menu layout (New Users Only)
+Write-Host "Applying Start Menu layout..."
+Import-StartLayout -Path $layoutPath -MountPath $env:SystemDrive\
+
+Write-Host "Start Menu layout has been applied. Restart your computer for changes to take effect." -ForegroundColor Green
+
 
 # Set up my terminal with Oh-My-Posh
 # nerd fonts

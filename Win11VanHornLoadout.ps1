@@ -27,6 +27,7 @@ winget install --id=Termius.Termius -e
 winget install --id=Notepad++.Notepad++ -e
 winget install DevToys-app.DevToys
 winget install --id=Elgato.StreamDeck -e
+winget install --id=Elgato.ControlCenter -e
 
 # Set up my start menu the way I want it
 # Define paths

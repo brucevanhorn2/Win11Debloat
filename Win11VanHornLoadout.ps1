@@ -87,3 +87,20 @@ if (-not (Select-String -Path $profilePath -Pattern "oh-my-posh init pwsh" -Quie
 
 # Restart PowerShell for changes to apply
 Write-Host "Oh My Posh has been set up with your custom theme. Restart PowerShell to apply changes." -ForegroundColor Green
+
+# This should be the last step (if you add more do it above here)
+# Setup terminal so it uses the right font and layout for omp
+# Define paths
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$gistUrl = "https://gist.githubusercontent.com/brucevanhorn2/YOUR_GIST_ID/raw/settings.json"
+
+# Wait for Windows Terminal settings file to exist (in case it's a fresh install)
+while (!(Test-Path $settingsPath)) {
+    Start-Sleep -Seconds 2
+}
+
+# Download the settings file from Gist
+Write-Host "Downloading Windows Terminal settings..."
+Invoke-WebRequest -Uri $gistUrl -OutFile $settingsPath -UseBasicParsing
+
+Write-Host "Windows Terminal settings applied. Restart Windows Terminal to see changes." -ForegroundColor Green

@@ -1,3 +1,12 @@
+# Automated Windows Dev Machine Setup
+
+I forked this for my own purposes:  I want to fully automate setting up a windows 11 computer
+with all my favorite things.  I'm using this debloat as a starting point and adding my own
+things.  I'm a web developer and software architect, so if you are too, feel free to fork this
+and tweak it to meet your own needs.
+
+Below is the original README contents so we can preserve the original authors support links.
+
 # Win11Debloat
 
 Win11Debloat is a simple, easy to use and lightweight PowerShell script that can remove pre-installed Windows bloatware apps, disable telemetry and declutter the experience by disabling or removing intrusive interface elements, ads and more. No need to painstakingly go through all the settings yourself or remove apps one by one. Win11Debloat makes the process quick and easy!

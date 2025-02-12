@@ -88,6 +88,39 @@ if (-not (Select-String -Path $profilePath -Pattern "oh-my-posh init pwsh" -Quie
 # Restart PowerShell for changes to apply
 Write-Host "Oh My Posh has been set up with your custom theme. Restart PowerShell to apply changes." -ForegroundColor Green
 
+# copy my favorite pics for backgrounds
+# Define source and destination paths
+$sourcePath = "$PSScriptRoot\img"
+$destinationPath = "$HOME\Pictures\karina-v-motorcycle"
+
+# Ensure the destination folder exists
+if (!(Test-Path -Path $destinationPath)) {
+    New-Item -ItemType Directory -Path $destinationPath -Force
+}
+
+# Copy all images from ./img to the destination
+Copy-Item -Path "$sourcePath\*" -Destination $destinationPath -Recurse -Force
+
+Write-Host "Images copied to $destinationPath successfully!" -ForegroundColor Green
+
+# set windows background to night city view
+# Define the wallpaper path
+$wallpaperPath = "$HOME\Pictures\karina-v-motorcycle\nightcity.png"
+
+# Ensure the file exists
+if (!(Test-Path -Path $wallpaperPath)) {
+    Write-Host "Error: Wallpaper file not found at $wallpaperPath" -ForegroundColor Red
+    exit
+}
+
+# Set the wallpaper using the Registry
+Write-Host "Setting wallpaper to: $wallpaperPath"
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name Wallpaper -Value $wallpaperPath
+
+# Refresh desktop to apply changes
+rundll32.exe user32.dll,UpdatePerUserSystemParameters
+
+# ---------------------------------------------------------------
 # This should be the last step (if you add more do it above here)
 # Setup terminal so it uses the right font and layout for omp
 # Define paths
